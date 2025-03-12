@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "GameplayTagContainer.h"
+#include "InputAction.h"
 #include "DataAsset_InputConfig.generated.h"
 
 class UInputAction;
@@ -21,6 +22,11 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UInputAction* InputAction;
+
+	bool IsValid() const
+	{
+		return InputTag.IsValid() && InputAction;
+	}
 };
 
 
@@ -37,4 +43,7 @@ public:
 	TArray<FWarriorInputActionConfig> NativeInputActions;
 
 	UInputAction* FindNativeInputActionByTag(const FGameplayTag& InputTag) const;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
+	TArray<FWarriorInputActionConfig> AbilityInputActions;
 };
